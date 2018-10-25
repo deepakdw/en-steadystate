@@ -1,12 +1,12 @@
 /*******************************************************//**
 @class      baseWrapper
-@brief      Wrapper class to get/typecast values based on datatypes.
+@purpose    Wrapper class to get/typecast values based on datatypes.
 @author     Deepak Dwivedi 
-@bug        No known defects.
-@todo       None.
+@Date       8/9/2018 3:17 AM.
+@todo       MDM_AccountsHelper, MDM_SiperianService.
 
-@Modified by : Sarthak
-@Modified Date: 17Sep2018
+@Modified by :  Deepak Dwivedi
+@Modified Date: 17 Sep 2018
 @Modification : @TestVisible added to methods of this abstract class 
 ***********************************************************/
 

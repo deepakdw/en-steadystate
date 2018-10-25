@@ -1,9 +1,9 @@
 /*******************************************************//**
 @class      MDM_Queuable
-@brief      MDM_Queuable class invoked by schedulable class to trigger the MDM 360 integration process with SFDC.           
+@purpose    MDM_Queuable class invoked by schedulable class to trigger the MDM 360 integration process with SFDC.           
 @author     Deepak Dwivedi
-@bug        No known defects.
-@todo       None.
+@date       8/18/2018 3:05 AM
+@invokedby  MDM_Schedulable.
 ***********************************************************/
 global without sharing class MDM_Queuable implements Queueable, Database.AllowsCallouts{
 

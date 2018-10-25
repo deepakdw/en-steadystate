@@ -1,9 +1,9 @@
 /*******************************************************//**
 @class      MDM_Schedulable 
-@brief      MDM_Schedulable class invoke by MDM_queuable class to trigger the MDM 360 integration process with SFDC.           
+@purpose    MDM_Schedulable class invoke by MDM_queuable class to trigger the MDM 360 integration process with SFDC.           
 @author     Deepak Dwivedi
-@bug        No known defects.
-@todo       None.
+@date       8/18/2018 3:02 AM
+@invokedby  None.
 ***********************************************************/
 global class MDM_Schedulable implements Schedulable{
 

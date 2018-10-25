@@ -1,9 +1,9 @@
 /*******************************************************//**
 @class      MDM_SiperianService
-@brief      Siperian Service class for making callouts to MDM 360 service.
+@purpose    Siperian Service class for making callouts to MDM 360 service.
 @author     Deepak Dwivedi
-@bug        No known defects.
-@todo       None.
+@Date       8/9/2018 3:19 AM
+@invokedby  MDM_AccountsHelper
 ***********************************************************/
 public class MDM_SiperianService{    
     
@@ -189,6 +189,11 @@ public class MDM_SiperianService{
         public Integer timeout_x;
         private String[] ns_map_type_info = new String[]{'urn:metadata.siperian.api', 'metadataSiperianApi', 'urn:siperian.api', 'MDM_SiperianService', 'urn:types.siperian.api', 'typesSiperianApi'};        
         
+        /**************************************************************************************
+        Purpose:     For first callout (searchQuery Call) to get the golden records
+        Parameters:  Filter Creteria, Records to return and Return total no of records
+        Return:      type of MDM_SearchQueryWrapper 
+        ***************************************************************************************/
         public MDM_SearchQueryWrapper searchQuery(String filterCriteria, Integer recordsToReturn, Boolean returnTotal){            
             MDM_SiperianService.SearchQueryRequest request_x = new MDM_SiperianService.SearchQueryRequest();
             request_x.filterCriteria = filterCriteria;
@@ -221,6 +226,11 @@ public class MDM_SiperianService{
             return result;
         }
         
+        /**************************************************************************************
+        Purpose:     For second callout (get Call) to get the xref records
+        Parameters:  RecordKey & RecordTypes
+        Return:      type of MDM_GetResponseWrapper 
+        ***************************************************************************************/
         public MDM_GetResponseWrapper get(MDM_SiperianService.RecordKey recordKey, MDM_SiperianService.RecordTypes recordTypes) {
             MDM_SiperianService.GetRequest request_x = new MDM_SiperianService.GetRequest();
             request_x.recordKey = recordKey;            
@@ -254,6 +264,11 @@ public class MDM_SiperianService{
             return result;                       
         }
         
+        /**************************************************************************************
+        Purpose:     To generate searchquery wrapper response
+        Parameters:  response in string
+        Return:      type of MDM_SearchQueryWrapper 
+        ***************************************************************************************/
         public MDM_SearchQueryWrapper generateJSONContent(String res){
             MDM_SearchQueryWrapper finalRes;
             if(!String.isEmpty(res)){ 
@@ -262,6 +277,11 @@ public class MDM_SiperianService{
             return finalRes;
         }
         
+        /**************************************************************************************
+        Purpose:     To generate get call wrapper response
+        Parameters:  response in string
+        Return:      type of MDM_GetResponseWrapper 
+        ***************************************************************************************/
         public MDM_GetResponseWrapper generateJSONgetContent(String res){       
             MDM_GetResponseWrapper finalRes;  
             if(!String.isEmpty(res)){

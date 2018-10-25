@@ -1,10 +1,10 @@
 /*******************************************************//**
 @class      searchQueryWrapper
-@brief      Wrapper class to parse MDM response into a single unit. Extends baseWrapper to get
+@purpose    Wrapper class to parse MDM response into a single unit. Extends baseWrapper to get
             values based on datatypes.
 @author     Deepak Dwivedi 
-@bug        No known defects.
-@todo       None.
+@date       8/9/2018 3:18 AM
+@invokedby  MDM_SiperianService, MDM_AcountsHelper
 ***********************************************************/
 
 public with sharing class MDM_SearchQueryWrapper extends MDM_BaseWrapper{
@@ -18,7 +18,11 @@ public with sharing class MDM_SearchQueryWrapper extends MDM_BaseWrapper{
     
     public MDM_SearchQueryWrapper(){        
     }
-
+	/********************************
+    Purpose:     to set the field value
+    Parameters:  field and value of object type
+    Return:      void
+    ********************************/
     public override void setField(String field, Object value){
         switch on field.toLowerCase(){
             when 'message' { this.message = getStringValue(value);}
@@ -29,6 +33,11 @@ public with sharing class MDM_SearchQueryWrapper extends MDM_BaseWrapper{
         }
     }
 
+    /********************************
+    Purpose:     to get the field
+    Parameters:  field of string type
+    Return:      void
+    ********************************/
     public override Object getField(String field){
         switch on field.toLowerCase(){
             when 'message' { return this.message;}
@@ -40,6 +49,11 @@ public with sharing class MDM_SearchQueryWrapper extends MDM_BaseWrapper{
         }
     }
 
+    /********************************
+    Purpose:     to deep clone the nested response
+    Parameters:  none
+    Return:      void
+    ********************************/
     public override Object deepClone(){
         MDM_SearchQueryWrapper result = this.clone();        
         if(this.record != null) {

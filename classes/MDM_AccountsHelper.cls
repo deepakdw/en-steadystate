@@ -1,11 +1,11 @@
 /*******************************************************//**
 @@@@@ This is a combined class for both callouts and dml operations. This class uses the methods of the MDM_SiperianService class.
-@@@@@ Methods of this class are initiated by Queueable.
+@@@@@ Methods of this class are initiated by MDM Queueable.
 @class      MDM_AccountsHelper
-@brief      Match scenarios between Accounts(Golden records) from MDM Informatica (Siperian API) and SFDC.
+@purpose    Match scenarios between Accounts(Golden records) from MDM Informatica (Siperian API) and SFDC.
 @author     Deepak Dwivedi 
-@bug        No known defects.
-@todo       None.
+@date       8/9/2018 3:20 AM
+@invokedby  MDM_Queuable.
 ***********************************************************/
 
 public with sharing class MDM_AccountsHelper{    
@@ -32,9 +32,13 @@ public with sharing class MDM_AccountsHelper{
         recordKey =  new MDM_SiperianService.RecordKey();
         recordTypes = new MDM_SiperianService.RecordTypes(); 
         accOwner = [SELECT Id FROM User WHERE CommunityNickname='datahold'].Id;
-    }
+    }    
     
-    //Wrapper for BO golden file
+    /****************************************
+    Purpose:     Wrapper for BO golden file
+    Parameters:  none
+    Return:      void
+    ****************************************/
     public class BOGoldenRecord_Wrapper{
         public String rowId;               
         public String acctName;            
@@ -53,9 +57,13 @@ public with sharing class MDM_AccountsHelper{
         public String BillingADDR_LN_1;
         public String BillingADDR_LN_2;
         public String BillingCountryCode;
-    }
+    }    
     
-    //Below method has the logic to make serachQuery callout and store the response in BO Wrapper
+    /*******************************************************************************************************
+    Purpose:     Below method has the logic to make serachQuery callout and store the response in BO Wrapper
+    Parameters:  Filter Creteria, Records to return and Return total no of records
+    Return:      void
+    *******************************************************************************************************/
     public void calloutSearchQuery(String filterCriteria, Integer recordsToReturn, Boolean returnTotal){
         
         MDM_SiperianService.Soap sApi = new MDM_SiperianService.Soap();        
@@ -134,9 +142,13 @@ public with sharing class MDM_AccountsHelper{
         if(list_BOGR_wrap.size() > 0){
             processAccountsMatching();
         }
-    }    
+    } 
     
-    //Below method has the logic for making callout to get response from Xref and match Salesforce account  
+    /*******************************************************************************************************
+    Purpose:     Below method has the logic for making callout to get response from Xref and match Salesforce account
+    Parameters:  none
+    Return:      void
+    *******************************************************************************************************/
     public void processAccountsMatching(){        
         String prevRowId = '';        
         for(BOGoldenRecord_Wrapper bogr : list_BOGR_wrap){  
