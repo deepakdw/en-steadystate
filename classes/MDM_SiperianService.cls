@@ -9,12 +9,14 @@ public class MDM_SiperianService{
     
     public String usrName, passwd, orsIds, siperianObjectUid_search, siperianObjectUid_get; 
     public MDM_SiperianService(){                
-        MDM_Config__mdt mdmConfig = [select orsId__c, siperianObjectUid_search__c, siperianObjectUid_get__c from MDM_Config__mdt];                
-        usrName = '{!$Credential.Username}';
-        passwd = '{!$Credential.Password}';
-        orsIds = mdmConfig.orsId__c;
-        siperianObjectUid_search = mdmConfig.siperianObjectUid_search__c;
-        siperianObjectUid_get = mdmConfig.siperianObjectUid_get__c;    
+        MDM_Config__mdt mdmConfig = [select orsId__c, siperianObjectUid_search__c, siperianObjectUid_get__c from MDM_Config__mdt];    
+        if(mdmConfig != null){
+            usrName = '{!$Credential.Username}';
+            passwd = '{!$Credential.Password}';
+            orsIds = mdmConfig.orsId__c;
+            siperianObjectUid_search = mdmConfig.siperianObjectUid_search__c;
+            siperianObjectUid_get = mdmConfig.siperianObjectUid_get__c; 
+        }  
     }
 
     public virtual class SiperianRequest{  
@@ -287,7 +289,7 @@ public class MDM_SiperianService{
             if(!String.isEmpty(res)){
                 finalRes = (MDM_GetResponseWrapper) JSON.deserialize(res, MDM_GetResponseWrapper.class);                
             }   
-            return  finalRes;
+            return  finalRes; 
         }
     }   
 }
