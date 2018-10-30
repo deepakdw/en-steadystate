@@ -172,27 +172,28 @@ public with sharing class MDM_AccountsHelper{
                             if(xref_Field.name == 'PKEY_SRC_OBJECT' && xref_Field.stringValue != null  && xref_Field.stringValue != ''){
                                 if((xref_Field.stringValue.trim().length() == 15 || xref_Field.stringValue.trim().length() == 18) && xref_Field.stringValue.trim().left(3) == '001'){
                                     System.debug('SFDC ID found:'+ xref_Field.stringValue.trim() + 'For rowid:' + bogr.rowId.trim());
-                                    //set_AllAccountIds.add(xref_Field.stringValue.trim()); // Commented for testing, To be removed in real scenario.
-                                    //set_thisAccountIds.add(xref_Field.stringValue.trim());
+                                    set_AllAccountIds.add(xref_Field.stringValue.trim()); // Commented for testing, To be removed in real scenario.
+                                    set_thisAccountIds.add(xref_Field.stringValue.trim());
                                 }
                             }
                         }
                     }
                 }
             }
-            //Testing data, To be removed in real scenario.         
-            if(bogr.rowId == '131582'){
-                Boolean result1 = set_thisAccountIds.addAll(set_AllAccountIds);
-                //set_AllAccountIds.add('0011b00000X6o4yAAB');
-                //set_thisAccountIds.add('0011b00000X6o4yAAB');
-            }  
-            if(bogr.rowId == '40488'){
-                Boolean result1 = set_thisAccountIds.addAll(set_AllAccountIds);
-                //set_AllAccountIds.add('0011b00000XvRwHAAV');
-                //set_thisAccountIds.add('0011b00000XvRwHAAV');                
-            }                   
-            
-            //Testing Data End, To be removed in real scenario.
+			/*
+				//Testing data, To be removed in real scenario.         
+				if(bogr.rowId == '131582'){
+					Boolean result1 = set_thisAccountIds.addAll(set_AllAccountIds);
+					//set_AllAccountIds.add('0011b00000X6o4yAAB');
+					//set_thisAccountIds.add('0011b00000X6o4yAAB');
+				}  
+				if(bogr.rowId == '40488'){
+					Boolean result1 = set_thisAccountIds.addAll(set_AllAccountIds);
+					//set_AllAccountIds.add('0011b00000XvRwHAAV');
+					//set_thisAccountIds.add('0011b00000XvRwHAAV');                
+				}                               
+				//Testing Data End, To be removed in real scenario.
+			*/
             if(set_thisAccountIds.size() > 0){
                 map_RowID_AccountIds.put(bogr.rowId, set_thisAccountIds); 
             }            
