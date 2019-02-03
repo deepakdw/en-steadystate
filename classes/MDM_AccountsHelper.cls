@@ -277,8 +277,10 @@ public with sharing class MDM_AccountsHelper{
                                                   BillingState = bogr.BillingState,
                                                   BillingCountry = bogr.BillingCountry,
                                                   BillingPostalCode = bogr.BillingPostalCode);
-                }
-                map_FinalAccountsTo_Insert.put(bogr.rowId, accountToInsert);                
+
+                    if(accountToInsert != null)
+                        map_FinalAccountsTo_Insert.put(bogr.rowId, accountToInsert);     
+                }                            
             }
         }
         
@@ -288,11 +290,13 @@ public with sharing class MDM_AccountsHelper{
             if(map_FinalAccounts.size() > 0){
                 mapAll.putall(map_FinalAccounts.values());
             }
-            lst_Upsert.addAll(mapAll.values());
+            lst_Upsert.addAll(mapAll.values());            
+            
             if(map_FinalAccountsTo_Insert.size() > 0)                 
                 lst_Upsert.addAll(map_FinalAccountsTo_Insert.values());
-
-            upsert lst_Upsert;           
+            
+            if(lst_Upsert.size() > 0)
+                upsert lst_Upsert;           
             
         }catch(DmlException e){
             System.debug('Upsert Failed in Process Accounts Matching #: ' + e.getMessage());  
