@@ -241,6 +241,8 @@ public with sharing class MDM_AccountsHelper{
                     if(acct != null){ // Condition for Account update
                         if(bogr.BillingCountryCode != null && bogr.BillingCity != null && bogr.BillingPostalCode != null){
                             acct.C360_Party_Name__c = bogr.acctName;
+                            //Commented all other fields from UPDATE as per the new communication
+                            /*
                             if(bogr.Phone != ''){acct.Phone = bogr.phone;}                        
                             if(bogr.Website != ''){acct.Website = bogr.Website;}
                             if(bogr.DUNSNumber != ''){acct.DUNSNumber__c = bogr.DUNSNumber;}
@@ -250,7 +252,7 @@ public with sharing class MDM_AccountsHelper{
                             acct.BillingState = bogr.BillingState;
                             acct.BillingCountry = bogr.BillingCountry;
                             acct.BillingPostalCode = bogr.BillingPostalCode;       
-                            
+                            */ 
                             map_FinalAccounts.put(bogr.rowId, acct);  //Create update account map.
                         }          
                     }
